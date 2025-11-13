@@ -54,6 +54,7 @@ class Connection(models.Model):
             ike_sa['send_certreq'] = 'yes'
         else:
             ike_sa['send_certreq'] = 'no'
+        ike_sa['send_cert'] = 'always' if self.connection_type == "remote_access" else 'ifasked'
 
         for local in self.server_local.all():
             local = local.subclass()
